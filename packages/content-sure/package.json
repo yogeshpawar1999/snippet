@@ -1,5 +1,5 @@
 {
-  "name": "content-sure",
+  "name": "news_platform",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -23,7 +23,6 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^9.0.0",
-    "@nestjs/mongoose": "^10.0.6",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^7.3.1",
     "class-transformer": "^0.5.1",
