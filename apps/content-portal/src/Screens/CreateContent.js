@@ -1,5 +1,6 @@
 import React from "react";
 
-export default function CreateContent() {
+const CreateContent = () => {
   return <div>CreateContent</div>;
-}
+};
+export default CreateContent;

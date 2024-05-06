@@ -1,13 +1,20 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Auth from "./Screens/Auth";
+import CreateContent from "./Screens/CreateContent";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Content Portal</h1>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Auth />} />
+          <Route path="/UploadContent" element={<CreateContent />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
