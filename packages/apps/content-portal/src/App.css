@@ -4,19 +4,20 @@
 
 .Auth-form-container {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   width: 100vw;
   height: 100vh;
+  margin: 60px;
 }
 
 .Auth-form {
-  width: 420px;
+  width: 500px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 20px;
   border-radius: 8px;
-  background-color: white;
+  /* background-color: white; */
 }
 
 .Auth-form-content {
@@ -28,7 +29,7 @@
   text-align: center;
   margin-bottom: 1em;
   font-size: 24px;
-  color: rgb(34, 34, 34);
+  color: white;
   font-weight: 800;
 }
 
@@ -36,4 +37,51 @@ label {
   font-size: 14px;
   font-weight: 600;
   color: rgb(34, 34, 34);
+}
+.news-portal-editor {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.news-portal-editor h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.news-portal-editor form {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-portal-editor label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.news-portal-editor input[type="text"],
+.news-portal-editor textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.news-portal-editor button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.news-portal-editor button:hover {
+  background-color: #0056b3;
+}
+.sb-background {
+  background-color: #000;
 }
