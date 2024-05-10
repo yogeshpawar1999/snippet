@@ -1,23 +1,28 @@
 .App {
-  background-color: white;
+  background-color: rgb(237, 225, 225);
 }
 
 .Auth-form-container {
   display: flex;
-  justify-content: left;
+  height: 100%;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  margin: 60px;
+  padding-left: 20%;
+  /* justify-content: left;
+  align-items: center; */
+  /* width: 100%;
+  height: 100%;
+  margin: 60px; */
 }
 
 .Auth-form {
   width: 500px;
-  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  box-shadow: rgb(0 0 0 / 25%) 1px 1px 50px;
   /* padding-top: 30px; */
   padding-bottom: 20px;
   border-radius: 8px;
   /* background-color: white; */
+  /* background-color: rgba(255, 255, 255, 0.7); */
+  
 }
 
 .Auth-form-content {
@@ -29,14 +34,14 @@
   text-align: center;
   margin-bottom: 1em;
   font-size: 24px;
-  color: white;
+  color: rgb(13, 1, 1);
   font-weight: 800;
 }
 
 label {
   font-size: 14px;
   font-weight: 600;
-  color: rgb(34, 34, 34);
+  color: rgb(32, 2, 2);
 }
 .news-portal-editor {
   max-width: 600px;
@@ -79,9 +84,18 @@ label {
   cursor: pointer;
 }
 
-.news-portal-editor button:hover {
+.news-portal-editor button:urhover {
   background-color: #0056b3;
 }
 .sb-background {
-  background-color: #000;
+  width: 100%;
+  height: 100vh;
+  background-color: #f4eaea;
+  background-image:url('../src/Screens/hackathon.png') ;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position:100%;
+  background-size: 30%;
+  
+  
 }
