@@ -3,7 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "devDependencies": {
-    "lerna": "^8.1.2"
+    "lerna": "^8.1.2",
+    "tailwindcss": "^3.4.3"
   },
   "workspaces": [
     "packages/*"

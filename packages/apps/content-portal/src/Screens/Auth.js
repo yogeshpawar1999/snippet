@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./AuthorDashboard.js";
 import '../App.css'
+
 
 const Auth = () => {
   const [username, setUsername] = useState("");
@@ -45,7 +47,7 @@ const Auth = () => {
     validateUsername(username);
     validatePassword(password);
     if (!errors.username && !errors.password) {
-      navigate("/UploadContent");
+      navigate("/AuthDashboard");
     }
   };
 
@@ -82,7 +84,7 @@ const Auth = () => {
               )}
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary" >
                 Submit
               </button>
             </div>
