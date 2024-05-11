@@ -1,4 +1,3 @@
-import React from "react"
 import { Navbar, Nav, Container, NavItem, Image } from "react-bootstrap"
 import "./layout.css"
 import SnippetLogo from "../../assets/images/Snippet_News_Logo.png"
