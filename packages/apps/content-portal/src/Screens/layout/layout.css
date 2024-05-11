@@ -1,0 +1,15 @@
+.header-nav {
+    background-color: white;
+    color:white;
+    height: 80px;
+}
+
+.footer-nav {
+        background-color: #1f0b78;
+        color:white;
+        height: 80px;
+}
+
+.footer-nav-link{
+    color:white !important;
+}
