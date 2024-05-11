@@ -90,16 +90,16 @@ const Dashboard = () => {
             <hr />
             {/* News section */}
             <Row xs={4} md={3} lg={4} className="g-4">
-              {provenance?.manifestStore ? (
+              {/* {provenance?.manifestStore ? (
                 <WebComponents
                   imageUrl={sampleImage}
                   provenance={provenance}
                   viewMoreUrl={viewMoreUrl}
                 />
-              ) : null}
+              ) : null} */}
               {/* Loop through news items and render cards */}
               {newsItems.map((item) => (
-                <NewsCard key={item.imageSrc} imageSrc={item.imageSrc} />
+                <NewsCard key={item.id} imageSrc={item.imageSrc} />
               ))}
             </Row>
           </Col>

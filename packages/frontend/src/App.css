@@ -1,0 +1,204 @@
+/* .App {
+  background-color: white;
+}
+
+.Auth-form-container {
+  /* display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 60px; */
+/* display: flex; */
+
+/* } */
+/*
+.Auth-form {
+  width: 500px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  /* padding-top: 30px; */
+/* padding-bottom: 20px;
+  border-radius: 8px; */
+/* background-color: white; */
+/* } */
+
+/* .Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: white;
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+.news-portal-editor {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.news-portal-editor h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.news-portal-editor form {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-portal-editor label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.news-portal-editor input[type="text"],
+.news-portal-editor textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+} */
+
+/* .news-portal-editor button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.news-portal-editor button:hover {
+  background-color: #0056b3;
+} */
+/* .sb-background {
+  height: 100vh;
+  width: 100%;
+  background-color: #f3eaea;
+  background-image: url("./Screens/hackathon.png");
+  background-repeat: no-repeat;
+  background-size: 30%;
+  margin-left: 45%;
+
+}  */
+
+.App {
+  background-color: white;
+}
+
+.Auth-form-container {
+  margin-left: 20%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 50%;
+  height: 100vh;
+  opacity: 90%;
+
+  /* background-color: #0056b3; */
+}
+
+.Auth-form {
+  background-color: #c4c9c0;
+  width: 500px;
+  height: auto;
+  box-shadow: rgba(17, 6, 6, 0.16) 1px 1px 10px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10%;
+  /* background-color: white; */
+}
+
+.Auth-form-content {
+  /* background-color: chocolate; */
+
+  padding-left: 19%;
+  padding-right: 12%;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(12, 1, 1);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+.news-portal-editor {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.news-portal-editor h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.news-portal-editor form {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-portal-editor label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.news-portal-editor input[type="text"],
+.news-portal-editor textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.news-portal-editor button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.news-portal-editor button:hover {
+  background-color: #0056b3;
+}
+.sb-background {
+  background: #eae5e5 url("./Screens/hackathon.png") no-repeat right top / 45%;
+  background-repeat: no-repeat;
+  height: 25%;
+
+  width: 100%;
+  background-size: 25%;
+}
+button {
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10%;
+  /* padding-right: 50%; */
+}
