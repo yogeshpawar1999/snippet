@@ -1,0 +1,3 @@
+[submodule "packages/ContentSure"]
+	path = packages/ContentSure
+	url = https://github.com/GHkrishna/ContentSure.git
