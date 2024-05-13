@@ -14,12 +14,31 @@ import {
 import NewsCard from "./common-components/NewsCard"
 import newsItems from "../newsItems"
 import Header from "./layout/header"
+import { ManifestSummary } from "c2pa-wc/dist/components/ManifestSummary"
+import "c2pa-wc/dist/components/Icon"
+import "c2pa-wc/dist/components/Indicator"
+import "c2pa-wc/dist/components/ManifestSummary"
+import "c2pa-wc/dist/components/PanelSection"
+import "c2pa-wc/dist/components/Popover"
+import "./Dashboard.css"
 
-function WebComponents({ imageUrl, provenance, viewMoreUrl }) {
+interface WebComponentsProps {
+  imageUrl: string
+  provenance: C2paReadResult
+  viewMoreUrl: string
+}
+
+function WebComponents({
+  imageUrl,
+  provenance,
+  viewMoreUrl,
+}: WebComponentsProps) {
   console.log("Inside WebComponents")
 
-  const [manifestStore, setManifestStore] = useState(null)
-  const summaryRef = useRef()
+  const [manifestStore, setManifestStore] = useState<L2ManifestStore | null>(
+    null
+  )
+  const summaryRef = useRef<ManifestSummary>()
 
   useEffect(() => {
     let disposeFn = () => {}
