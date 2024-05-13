@@ -2,8 +2,21 @@ import { Navbar, Nav, Container, NavItem, Image } from "react-bootstrap"
 import "./layout.css"
 import SnippetLogo from "../../assets/images/Snippet_News_Logo.png"
 import Union from "../../assets/images/Union.png"
+import { useNavigate } from "react-router-dom"
 
 const Header = () => {
+  const navigate = useNavigate()
+
+  const handleSignIn = async (event) => {
+    event.preventDefault()
+    navigate("/auth")
+  }
+
+  const handleSignUp = async (event) => {
+    // event.preventDefault()
+    // navigate('/auth')
+  }
+
   return (
     <Navbar expand="lg" className="header-nav">
       <Container fluid>
@@ -33,6 +46,7 @@ const Header = () => {
                 <button
                   className="btn btn-outline-light"
                   style={{ color: "white", backgroundColor: "#1f0b78" }}
+                  onClick={handleSignUp}
                 >
                   Register
                 </button>
@@ -45,6 +59,7 @@ const Header = () => {
                 <button
                   className="btn btn-outline-light"
                   style={{ color: "white", backgroundColor: "#1f0b78" }}
+                  onClick={handleSignIn}
                 >
                   Sign In
                 </button>

@@ -46,7 +46,7 @@ const Auth = () => {
     validateUsername(username)
     validatePassword(password)
     if (!errors.username && !errors.password) {
-      navigate("/AuthDashboard")
+      navigate("/auth-dashboard")
     }
   }
 

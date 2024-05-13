@@ -6,14 +6,12 @@ import Dashboard from "./Screens/Dashboard"
 const App = () => {
   return (
     <Router>
-      {/* <div> */}
       <Routes>
-        <Route path="/" element={<Auth />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/AuthDashBoard" element={<AuthorDashboard />} />
-        <Route path="/UploadContent" element={<CreateContent />} />
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/auth-dashboard" element={<AuthorDashboard />} />
+        <Route path="/upload-content" element={<CreateContent />} />
       </Routes>
-      {/* </div> */}
     </Router>
   )
 }
