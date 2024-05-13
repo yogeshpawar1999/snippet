@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "create_contents",
+  "info": {
+    "singularName": "create-content",
+    "pluralName": "create-contents",
+    "displayName": "create-content",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "text"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "AuthorName": {
+      "type": "text"
+    },
+    "ContentImages": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "SocialLink": {
+      "type": "text"
+    },
+    "Status": {
+      "type": "string"
+    },
+    "AuthorEmail": {
+      "type": "email"
+    },
+    "FullNews": {
+      "type": "text"
+    }
+  }
+}
