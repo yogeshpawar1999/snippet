@@ -82,8 +82,8 @@ const Auth = () => {
                 <div className="text-danger">{errors.password}</div>
               )}
             </div>
-            <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary">
+            <div >
+              <button type="submit" className="button-11">
                 Submit
               </button>
             </div>

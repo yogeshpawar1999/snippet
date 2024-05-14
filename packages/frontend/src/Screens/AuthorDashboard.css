@@ -8,10 +8,10 @@ AuthorDashboard.css
     
     background-color:rgb(247, 236, 236);
   }
-  /* .Auth-form{
+  .Auth-form{
     height: 100vh;
     width: 100%;
-  } */
+  }
   .card-container {
     display: flex;
     justify-content: center;
