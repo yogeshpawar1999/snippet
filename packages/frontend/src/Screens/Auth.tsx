@@ -1,9 +1,13 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./AuthorDashboard"
 import "../App.css"
+import { AuthContext } from "./AuthContext"
+import {UserData} from "./UserData.json"
 
 const Auth = () => {
+  const user = useContext(AuthContext);
+  const { login }=useContext(AuthContext);
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState({ username: "", password: "" })
@@ -41,12 +45,50 @@ const Auth = () => {
     }
   }
 
+    //  const data= JSON.stringify(user)
+     console.log('user test', user);
+  
+  const CheckCred=()=>{
+   
+    const userData=JSON.stringify({UserData})
+    // UserData.
+    console.log(userData +" Userdata");
+      
+      // login({ name: 'John Doe', email: 'johndoe@example.com' })
+      UserData.forEach((ele)=>{
+        console.log('ele', ele);
+        console.log('ele.userName === username', ele.userName === username);
+        
+        if(ele.userName === username){
+          login(ele)
+        }
+      })
+      
+      // login(username);
+      
+     const data= JSON.stringify(user)
+     console.log(data +" heloo from user data ")
+    
+    
+
+    
+  }
+  
   const handleSubmit = (e) => {
+    const userData = { name: 'John Doe', email: 'johndoe@example.com' };
+
+
+
+    // login(userData); // Update context with user data
+    
+    
+  
     e.preventDefault()
     validateUsername(username)
     validatePassword(password)
     if (!errors.username && !errors.password) {
-      navigate("/auth-dashboard")
+      CheckCred()
+      navigate("/")
     }
   }
 
