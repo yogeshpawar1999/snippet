@@ -5,7 +5,7 @@
 }
 
 .Auth-form-container {
-  margin-right: 33%;
+  margin-left: 10%;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -95,12 +95,11 @@ label {
   background-color: #0056b3;
 }
 .sb-background {
-  background: #eae5e5 url("./Screens/hackathon.png") no-repeat right top / 45%;
+  background: white url("./Screens/hackathon.png") no-repeat right top / 75%;
   background-repeat: no-repeat;
   height: 25%;
-
   width: 100%;
-  background-size: 25%;
+  background-size: 35%;
 }
 button {
   height: 35px;
@@ -109,3 +108,35 @@ button {
   margin-bottom: 10%;
   /* padding-right: 50%; */
 }
+
+@media screen and (max-width: 768px) {
+  .Auth-form-container {
+    width: 80%;
+    margin-right: 10%;
+  }
+}
+
+/* Button Styles */
+.button-11 {
+  margin-top: 15px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10%;
+  /* padding-right: 50%; */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-11:hover {
+  background-color: lightgray;
+  color: black;
+}
+
+/* .button-11:active {
+  background-color: lightgrey;
+  color: black;
+} */
