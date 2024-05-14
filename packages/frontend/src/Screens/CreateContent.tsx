@@ -1,7 +1,7 @@
-import { ChangeEvent, ChangeEventHandler, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { toPng } from "html-to-image";
 import logo from "./Snippet_News_Logo-removebg-preview 1.png";
-// import { response } from "../response";
+// import "./CreateContent.css";
 
 const CreateContent = () => {
   const [title, setTitle] = useState("");
