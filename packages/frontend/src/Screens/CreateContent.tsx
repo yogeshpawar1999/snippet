@@ -1,7 +1,11 @@
 import { useRef, useState } from "react";
 import { toPng } from "html-to-image";
-import logo from "./Snippet_News_Logo-removebg-preview 1.png";
-// import "./CreateContent.css";
+import "./CreateContent.css";
+import Footer from "./layout/Footer";
+import { Navbar, Nav, Container, Image } from "react-bootstrap";
+import "./layout/layout.css";
+import SnippetLogo from "../assets/images/Snippet_News_Logo.png";
+import Union from "../assets/images/Union.png";
 
 const CreateContent = () => {
   const [title, setTitle] = useState("");
@@ -71,9 +75,31 @@ const CreateContent = () => {
 
   return (
     <>
-      <nav className="navbar">
-        <img className="logo float-start" src={logo} alt="" />
-      </nav>
+      <Navbar expand="lg" className="header-nav">
+        <Container fluid>
+          <Navbar.Brand href="#">
+            <img
+              src={Union}
+              alt="microphone logo"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{" "}
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto d-flex justify-content-center align-items-center">
+              <Image
+                src={SnippetLogo}
+                alt="Snippet News Logo"
+                width="100px"
+                height="80px"
+                className="me-3"
+              />
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <div className="container">
         <div className="author-portal">
           <div className="news-portal-editor">
@@ -111,7 +137,11 @@ const CreateContent = () => {
                   className="form-control-file"
                 />
               </div>
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                style={{ marginTop: 30 }}
+              >
                 Submit
               </button>
             </form>
@@ -141,6 +171,7 @@ const CreateContent = () => {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 };
