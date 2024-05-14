@@ -14,6 +14,7 @@ AuthorDashboard.css
   }
   .card-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     height: auto;
@@ -47,28 +48,31 @@ AuthorDashboard.css
   }
   
   
-  button{
-    font-family:cursive;
-    /* background-color: #14eb1c;  */
-    border: 1px solid;
-    color: rgb(27, 9, 9);
-    /* padding: 15px 32px; */
-    height: 5%;
-    justify-content: center;
-    align-items: center;
-    text-decoration: solid;
-    display:flex ;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 25px;
-    width: 100px;
-    padding:10px;
-    margin-left: 45%;
-    margin-top: 5%;
+ .auth button{
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  margin-right: 10%;
+  margin-left: 10%;
+  /* padding-right: 50%; */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
     
   }
-  button:hover {
-    background-color: #469726; /* Darker green */
+  .auth button:hover {
+    background-color: lightgreen;
+    color: black;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .Auth-form-container {
+      width: 80%;
+      margin-right: 10%;
+    }
   }
 
   .navbar {

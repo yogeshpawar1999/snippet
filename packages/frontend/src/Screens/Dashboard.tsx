@@ -1,7 +1,7 @@
 import { Container, Row, Col, Navbar, Nav, Image } from "react-bootstrap"
 import Footer from "./layout/Footer"
 import { useC2pa, useThumbnailUrl } from "@contentauth/react"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useContext } from "react"
 import {
   C2paReadResult,
   generateVerifyUrl,
@@ -11,6 +11,8 @@ import {
   createL2ManifestStore,
 } from "c2pa"
 
+
+import { AuthContext } from "./AuthContext"
 import NewsCard from "./common-components/NewsCard"
 import newsItems from "../newsItems"
 import Header from "./layout/header"
@@ -121,6 +123,12 @@ const MidComp = ({ sampleImage }) => {
 }
 
 const Dashboard = () => {
+
+
+  const user = useContext(AuthContext);
+    
+  console.log('123 user *****', user);
+  
   // const sampleImage ="https://picsum.photos/id/0/5000/3333"
 
   const sampleImage =
@@ -166,7 +174,14 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    getContentAPI()
+    // getContentAPI()
+    setNewsList((prevele) => [
+      ...prevele,
+      sampleImage,
+      sampleImage,
+      sampleImage,
+      sampleImage,
+    ])
   }, [])
   return (
     <div className="App">
@@ -176,7 +191,8 @@ const Dashboard = () => {
           <Col xs={12} lg={12}>
             <div className="d-flex flex-wrap justify-content-between">
               <div className="mb-2">
-                <h2>Latest News</h2>
+                <p>{console.log("ABC",user)}</p>
+                <h2>{user?.userData?.role ==="AUTHOR" ? 'AUTHOR': user?.userData?.role ==="Editor" ? 'Editor' : "Latest News"}</h2>
               </div>
             </div>
             <hr />

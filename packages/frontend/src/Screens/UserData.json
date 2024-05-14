@@ -1,0 +1,12 @@
+{
+    "UserData": [
+      {
+        "userName": "author@gmail.com",
+        "role": "AUTHOR"
+      },
+      {
+        "userName": "editor@gmail.com",
+        "role": "AUTHOR"
+      }
+    ]
+  }
