@@ -3,6 +3,8 @@ import {
   Controller,
   Get,
   HttpStatus,
+  Param,
+  Patch,
   Post,
   Request,
   Res,
@@ -21,12 +23,26 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async getAllPosts(@Request() req, @Res() res): Promise<News[]> {
+    const data = await this.appService.getAllPosts();
+
+    const updatedData = data.map((item) => {
+      return {
+        ...item,
+        contentImage: `${req.protocol}://${req.get('host')}/${
+          item.contentImage
+        }`,
+      };
+    });
+
+    return res.status(HttpStatus.OK).send({
+      status: HttpStatus.OK,
+      message: 'Content fetched successfully',
+      data: updatedData,
+    });
   }
 
   @Post()
-  // @UseInterceptors(FileInterceptor('contentImage'))
   @UseInterceptors(
     FileInterceptor('contentImage', {
       storage: diskStorage({
@@ -59,10 +75,34 @@ export class AppController {
       console.log('imageUrl', imageUrl);
 
       createContentDto.contentImage = contentImage.path;
-      await this.appService.createContent(createContentDto);
-      return res
-          .status(HttpStatus.CREATED)
-          .send({status: HttpStatus.CREATED, message: 'Content created successfully' });
+      const data = await this.appService.createContent(createContentDto);
+      return res.status(HttpStatus.CREATED).send({
+        status: HttpStatus.CREATED,
+        message: 'Content created successfully',
+        data,
+      });
+    } catch (err) {
+      console.log('err', err);
+      throw err;
+    }
+  }
+
+  @Patch(':id')
+  async updatePost(
+    @Param('id') id: string,
+    @Body() createContentDto: CreateContentDto,
+    @Res() res,
+  ): Promise<News> {
+    try {
+      const data = await this.appService.updateContent(
+        Number(id),
+        createContentDto,
+      );
+      return res.status(HttpStatus.CREATED).send({
+        status: HttpStatus.CREATED,
+        message: 'Content updated successfully',
+        data,
+      });
     } catch (err) {
       console.log('err', err);
       throw err;
