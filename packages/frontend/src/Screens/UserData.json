@@ -2,11 +2,13 @@
     "UserData": [
       {
         "userName": "author@gmail.com",
-        "role": "AUTHOR"
+        "role": "AUTHOR",
+        "name":"Smith"
       },
       {
         "userName": "editor@gmail.com",
-        "role": "AUTHOR"
+        "role": "EDITOR",
+        "name":"John"
       }
     ]
   }
