@@ -1,4 +1,4 @@
-import { Container, Row, Col, Navbar, Nav, Image } from "react-bootstrap"
+import { Container, Row, Col, Navbar, Nav, Image, Card } from "react-bootstrap"
 import Footer from "./layout/Footer"
 import { useC2pa, useThumbnailUrl } from "@contentauth/react"
 import { useState, useEffect, useRef, useContext } from "react"
@@ -23,6 +23,7 @@ import "c2pa-wc/dist/components/ManifestSummary"
 import "c2pa-wc/dist/components/PanelSection"
 import "c2pa-wc/dist/components/Popover"
 import "./Dashboard.css"
+import { AUTHORS, NewsStatus, ROLES } from "../common/constants"
 
 interface WebComponentsProps {
   imageUrl: string
@@ -43,7 +44,7 @@ function WebComponents({
   const summaryRef = useRef<ManifestSummary>()
 
   useEffect(() => {
-    let disposeFn = () => {}
+    let disposeFn = () => { }
 
     if (!provenance.manifestStore?.activeManifest) {
       return
@@ -101,23 +102,28 @@ const MidComp = ({ sampleImage }) => {
   console.log("provenance h", provenance)
   const viewMoreUrl = generateVerifyUrl(sampleImage)
   console.log("viewMoreUrl", viewMoreUrl)
-  console.log(
-    "provenance?.manifestStore",
-    sampleImage,
-    provenance?.manifestStore
-  )
 
   return (
     <>
-      {provenance?.manifestStore ? (
-        <Col>
-          <WebComponents
-            imageUrl={sampleImage}
-            provenance={provenance}
-            viewMoreUrl={viewMoreUrl}
-          />
-        </Col>
-      ) : null}
+      <Col>
+        <Card>
+          {provenance?.manifestStore ? (
+
+            <WebComponents
+              imageUrl={sampleImage}
+              provenance={provenance}
+              viewMoreUrl={viewMoreUrl}
+            />
+          ) : <Image
+            src={sampleImage}
+            alt="Snippet News Logo"
+            width="100%"
+            height="100%"
+            className="me-3"
+          />}
+        </Card>
+      </Col>
+
     </>
   )
 }
@@ -126,9 +132,9 @@ const Dashboard = () => {
 
 
   const user = useContext(AuthContext);
-    
+
   console.log('123 user *****', user);
-  
+
   // const sampleImage ="https://picsum.photos/id/0/5000/3333"
 
   const sampleImage =
@@ -154,34 +160,29 @@ const Dashboard = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        const Dataele = data.data.map((ele) => {
-          return `http://localhost:1337${ele.attributes.ContentImages.data[0].attributes.url}`
-        })
-        // setNewsList(()=> Dataele)
-        setNewsList((prevele) => [
-          ...prevele,
-          sampleImage,
-          sampleImage,
-          sampleImage,
-          sampleImage,
-        ])
-        console.log("Dataele", Dataele)
-        console.log("newsList", newsList)
 
-        // console.log("data", data.data.attributes)
+        let mappedData = [];
+        console.log('user?.userData?.role', user?.userData?.role);
+        
+        switch (user?.userData?.role) {
+          case ROLES.AUTHOR:
+            mappedData = data.data.filter(ele => { return ele.attributes?.AuthorName === user?.userData?.name }).map((curEle) => `http://localhost:1337${curEle.attributes.ContentImages.data[0].attributes.url}`)
+            break;
+          case ROLES.EDITOR:
+            mappedData = data.data.filter(ele => { return ele.attributes?.Status === NewsStatus.IN_REVIEW }).map((curEle) => `http://localhost:1337${curEle.attributes.ContentImages.data[0].attributes.url}`)
+            break;
+          default:
+            mappedData = data.data.filter(ele => { return ele.attributes?.Status === NewsStatus.PUBLISHED }).map((curEle) => `http://localhost:1337${curEle.attributes.ContentImages.data[0].attributes.url}`)
+            break;
+        }
+
+        setNewsList(() => mappedData)
       })
       .catch((error) => console.error("Error:", error))
   }
 
   useEffect(() => {
-    // getContentAPI()
-    setNewsList((prevele) => [
-      ...prevele,
-      sampleImage,
-      sampleImage,
-      sampleImage,
-      sampleImage,
-    ])
+    getContentAPI()
   }, [])
   return (
     <div className="App">
@@ -191,8 +192,8 @@ const Dashboard = () => {
           <Col xs={12} lg={12}>
             <div className="d-flex flex-wrap justify-content-between">
               <div className="mb-2">
-                <p>{console.log("ABC",user)}</p>
-                <h2>{user?.userData?.role ==="AUTHOR" ? 'AUTHOR': user?.userData?.role ==="Editor" ? 'Editor' : "Latest News"}</h2>
+                <p>{console.log("ABC", user)}</p>
+                <h2>{user?.userData?.role === ROLES.AUTHOR ? 'My Posts' : user?.userData?.role === ROLES.EDITOR ? 'New Requests' : "Latest News"}</h2>
               </div>
             </div>
             <hr />
@@ -206,22 +207,8 @@ const Dashboard = () => {
               )}
 
               {newsList?.length &&
-                newsList?.map((item) => <MidComp sampleImage={sampleImage} />)}
-              {/* {provenance[0]?.manifestStore ? (
-                newsItems.map((item, index) => (
-                  // {provenance[0]?.manifestStore ? (
-                  <WebComponents
-                    imageUrl={sampleImage}
-                    provenance={provenance[0]}
-                    viewMoreUrl={viewMoreUrl}
-                  />
-                  // ) : null}
-                ))
-              ) : null} */}
-              {/* Loop through news items and render cards */}
-              {/* {newsItems.map((item) => (
-                <NewsCard key={item.id} imageSrc={item.imageSrc} />
-              ))} */}
+                newsList?.map((item) => <MidComp sampleImage={item} />)}
+              
             </Row>
           </Col>
           {/* Rest of your layout code remains the same */}

@@ -45,20 +45,8 @@ const Auth = () => {
     }
   }
 
-    //  const data= JSON.stringify(user)
-     console.log('user test', user);
-  
   const CheckCred=()=>{
-   
-    const userData=JSON.stringify({UserData})
-    // UserData.
-    console.log(userData +" Userdata");
-      
-      // login({ name: 'John Doe', email: 'johndoe@example.com' })
       UserData.forEach((ele)=>{
-        console.log('ele', ele);
-        console.log('ele.userName === username', ele.userName === username);
-        
         if(ele.userName === username){
           login(ele)
         }
@@ -75,14 +63,6 @@ const Auth = () => {
   }
   
   const handleSubmit = (e) => {
-    const userData = { name: 'John Doe', email: 'johndoe@example.com' };
-
-
-
-    // login(userData); // Update context with user data
-    
-    
-  
     e.preventDefault()
     validateUsername(username)
     validatePassword(password)
