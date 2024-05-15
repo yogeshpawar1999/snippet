@@ -6,7 +6,6 @@ import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import "./layout/layout.css";
 import SnippetLogo from "../assets/images/Snippet_News_Logo.png";
 import Union from "../assets/images/Union.png";
-import { useNavigate } from "react-router-dom";
 
 const CreateContent = () => {
   const [title, setTitle] = useState("");
