@@ -6,6 +6,7 @@ import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import "./layout/layout.css";
 import SnippetLogo from "../assets/images/Snippet_News_Logo.png";
 import Union from "../assets/images/Union.png";
+import { useNavigate } from "react-router-dom";
 
 const CreateContent = () => {
   const [title, setTitle] = useState("");
@@ -14,39 +15,56 @@ const CreateContent = () => {
   const [submitted, setSubmitted] = useState(false);
   const [previewVisible, setPreviewVisible] = useState(false);
   const previewContentRef = useRef(null);
-  const API_KEY =
-    "715e06656b9e7c814ee1c8adcb968d67b078199d1a3df2d7396f48d0cbf3121266be9ed568347d071c541ac0a5cfe453140673a5406aea277fce1116af21f4960b535cb4d981262d7723caa3e76ea0d1a44fede3bfc1b4d218da1f581dae0f34e04784dcf331379b755ecd4c94822a2050b2acbd3372156a188c3b92ee4ad68b";
-
+  // const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
     await displayContent(title, description, image);
-    setPreviewVisible(!previewVisible);
-    setSubmitted(true);
   };
 
-  const displayContent = async (title: string, description: string, image) => {
-    fetch("http://192.168.1.121:1337/api/create-contents", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-      body: JSON.stringify({
-        data: {
-          Title: title,
-          Description: description,
-        },
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-    setSubmitted(true);
-    await handleSaveImage();
+  const displayContent = async (
+    title: string,
+    description: string,
+    image: File
+  ) => {
+    try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("contentImage", image);
+      formData.append("authorName", "Poonam");
+      formData.append("authorEmail", "poonam.ghewande@ayanworks.com");
+      formData.append("status", "inReview");
+      formData.append("fullNews", "");
+      formData.append("socialLink", "");
+
+      const response = await fetch(
+        "https://b2e2-2401-4900-1c9b-2f32-d106-9b2c-c008-72ac.ngrok-free.app/content",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to upload content");
+      }
+
+      const data = await response.json();
+      if (data) {
+        await handleSaveImage();
+        setSubmitted(true);
+        setPreviewVisible(!previewVisible);
+        // setTimeout(() => {
+        //   navigate("/");
+        // }, 5000);
+      }
+      console.log(data);
+    } catch (error) {
+      console.error("Error uploading content:", error);
+    }
   };
 
   const handleSaveImage = async () => {
-    setSubmitted(true);
     setPreviewVisible(!previewVisible);
     if (!previewContentRef.current) return;
     try {
