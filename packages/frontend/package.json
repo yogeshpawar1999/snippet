@@ -14,6 +14,7 @@
     "@headlessui/react": "^2.0.3",
     "@heroicons/react": "^2.1.3",
     "bootstrap": "^5.3.3",
+    "buffer": "^6.0.3",
     "c2pa": "^0.21.0",
     "c2pa-wc": "^0.13.0",
     "html-to-image": "^1.11.11",

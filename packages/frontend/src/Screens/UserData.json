@@ -1,12 +1,12 @@
 {
     "UserData": [
       {
-        "userName": "author@gmail.com",
+        "userName": "sairanjit.tummalapalli@ayanworks.com",
         "role": "AUTHOR",
-        "name":"Smith"
+        "name":"Sai"
       },
       {
-        "userName": "editor@gmail.com",
+        "userName": "editor@snippet.com",
         "role": "EDITOR",
         "name":"John"
       }

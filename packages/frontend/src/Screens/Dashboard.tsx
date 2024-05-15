@@ -93,7 +93,7 @@ function WebComponents({
   )
 }
 
-const MidComp = ({ sampleImage, attributes }) => {
+const MidComp = ({ sampleImage, attributes, userInfo }) => {
   const provenance = useC2pa(sampleImage)
   const viewMoreUrl = generateVerifyUrl(sampleImage)
 
@@ -206,11 +206,12 @@ const MidComp = ({ sampleImage, attributes }) => {
               className="me-3"
             />
           )}
-
-          <div className="d-flex justify-content-around">
-            <Button variant="danger" className='m-2 disabled'>Reject</Button>
-            <Button variant="primary" className='m-2' onClick={() => signedImgae(sampleImage)}>Approve</Button>
-          </div>
+          {userInfo?.role === ROLES.EDITOR &&
+            <div className="d-flex justify-content-around">
+              <Button variant="danger" className='m-2 disabled'>Reject</Button>
+              <Button variant="primary" className='m-2' onClick={() => signedImgae(sampleImage)}>Approve</Button>
+            </div>
+          }
 
           {/* {userData?.role === ROLES.EDITOR &&
           <div>
@@ -284,7 +285,7 @@ const Dashboard = () => {
             {/* News section */}
             <Row xs={4} md={3} lg={4} className="g-4">
               {newsList?.length &&
-                newsList?.map((item) => <MidComp sampleImage={item.contentImage} attributes={item.attributes} />)}
+                newsList?.map((item) => <MidComp sampleImage={item.contentImage} attributes={item.attributes} userInfo ={user?.userData}/>)}
             </Row>
           </Col>
           {/* Rest of your layout code remains the same */}

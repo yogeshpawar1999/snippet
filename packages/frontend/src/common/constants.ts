@@ -9,6 +9,6 @@ export enum NewsStatus {
 }
 
 export enum AUTHORS {
-  AUTHOR_ONE = "Smith",
+  AUTHOR_ONE = "Sai",
   AUTHOR_TWO = "John",
 }
