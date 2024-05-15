@@ -3,8 +3,11 @@ import "./layout.css"
 import SnippetLogo from "../../assets/images/Snippet_News_Logo.png"
 import Union from "../../assets/images/Union.png"
 import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../AuthContext"
+import { useContext } from "react"
 
 const Header = () => {
+  const user = useContext(AuthContext)
   const navigate = useNavigate()
 
   const handleSignIn = async (event) => {
@@ -15,6 +18,11 @@ const Header = () => {
   const handleSignUp = async (event) => {
     // event.preventDefault()
     // navigate('/auth')
+  }
+
+  const handleUploadContent = () => {
+    event.preventDefault()
+    navigate("/upload-content")
   }
 
   return (
@@ -62,6 +70,17 @@ const Header = () => {
                   onClick={handleSignIn}
                 >
                   Sign In
+                </button>
+              </Nav.Link>
+            </NavItem>
+            <NavItem>
+              <Nav.Link href="#">
+                <button
+                  className="btn btn-outline-light"
+                  style={{ color: "white", backgroundColor: "#1f0b78" }}
+                  onClick={handleUploadContent}
+                >
+                  Create Content
                 </button>
               </Nav.Link>
             </NavItem>

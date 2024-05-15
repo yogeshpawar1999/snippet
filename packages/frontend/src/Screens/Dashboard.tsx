@@ -130,7 +130,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getContentAPI = async () => {
-      fetch("http://192.168.1.2:5001/content", {
+      fetch("http://192.168.1.27:5001/content", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -153,7 +153,7 @@ const Dashboard = () => {
               break
             default:
               mappedData = data.data
-                .filter((ele) => ele?.status === NewsStatus.PUBLISHED)
+                // .filter((ele) => ele?.status === NewsStatus.PUBLISHED)
                 .map((curEle) => curEle.contentImage)
               break
           }

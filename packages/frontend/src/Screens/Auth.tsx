@@ -1,82 +1,82 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./AuthorDashboard";
-import "../App.css";
-import { AuthContext } from "./AuthContext";
-import { UserData } from "./UserData.json";
+import React, { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import "./AuthorDashboard"
+import "../App.css"
+import { AuthContext } from "./AuthContext"
+import { UserData } from "./UserData.json"
 
 const Auth = () => {
-  const user = useContext(AuthContext);
-  const { login } = useContext(AuthContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [author, setAuthor] = useState(false);
-  const [errors, setErrors] = useState({ username: "", password: "" });
-  const navigate = useNavigate();
+  const user = useContext(AuthContext)
+  const { login } = useContext(AuthContext)
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [author, setAuthor] = useState(false)
+  const [errors, setErrors] = useState({ username: "", password: "" })
+  const navigate = useNavigate()
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-    validateUsername(e.target.value);
-  };
+    setUsername(e.target.value)
+    validateUsername(e.target.value)
+  }
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    validatePassword(e.target.value);
-  };
+    setPassword(e.target.value)
+    validatePassword(e.target.value)
+  }
 
   const validateUsername = (value) => {
     if (!value) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         username: "Username is required",
-      }));
+      }))
     } else {
-      setErrors((prevErrors) => ({ ...prevErrors, username: "" }));
+      setErrors((prevErrors) => ({ ...prevErrors, username: "" }))
     }
-  };
+  }
 
   const validatePassword = (value) => {
     if (!value) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         password: "Password is required",
-      }));
+      }))
     } else {
-      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+      setErrors((prevErrors) => ({ ...prevErrors, password: "" }))
     }
-  };
+  }
 
   const CheckCred = () => {
     UserData.forEach((ele) => {
       if (ele.userName === username) {
-        login(ele);
+        login(ele)
       }
-    });
+    })
 
     // login(username);
 
-    const data = JSON.stringify(user);
-    console.log(data + " heloo from user data ");
-  };
+    const data = JSON.stringify(user)
+    console.log(data + " heloo from user data ")
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    validateUsername(username);
-    validatePassword(password);
+    e.preventDefault()
+    validateUsername(username)
+    validatePassword(password)
     if (!errors.username && !errors.password) {
-      CheckCred();
+      CheckCred()
       if (author) {
-        localStorage.setItem("AUTHOR", "true");
-        navigate("/upload-content");
+        localStorage.setItem("AUTHOR", "true")
+        navigate("/")
       } else {
-        localStorage.setItem("EDITOR", "true");
-        navigate("/");
+        localStorage.setItem("EDITOR", "true")
+        navigate("/")
       }
     }
-  };
+  }
   const handleAuthorChange = (e) => {
-    setAuthor(e.target.checked);
-  };
+    setAuthor(e.target.checked)
+  }
 
   return (
     <div className="sb-background">
@@ -129,7 +129,7 @@ const Auth = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Auth;
+export default Auth
