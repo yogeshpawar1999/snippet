@@ -1,15 +1,43 @@
 .header-nav {
-  background-color: white;
+  background-color:rgb(222 213 248);
   color: white;
   height: 80px;
+  display: flex;
+  align-items: center; 
+   gap: 10rem;
+   font-size: 1rem;
 }
 
 .footer-nav {
   background-color: #1f0b78;
   color: white;
   height: 80px;
+  gap: 64rem;
 }
 
 .footer-nav-link {
   color: white !important;
+}
+
+.header-nav-link {
+  color: #000000;
+  font-size:44px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.categories-navitem {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+gap: 24px;
+ 
+}
+
+.gap1 {
+  gap: 28rem;
+}
+
+.custom-img {
+  margin-left: 10px;
 }

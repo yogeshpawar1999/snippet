@@ -24,14 +24,15 @@ const Header = () => {
           <img
             src={Union}
             alt="microphone logo"
-            width="30"
-            height="30"
+            width="15"
+            height="15"
             className="d-inline-block align-top"
           />{" "}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto d-flex justify-content-center align-items-center">
+          <Nav className="gap1">
+          <NavItem className="">
             <Image
               src={SnippetLogo}
               alt="Snippet News Logo"
@@ -39,13 +40,20 @@ const Header = () => {
               height="80px"
               className="me-3"
             />
-          </Nav>
-          <Nav>
-            <NavItem>
+          </NavItem>
+        
+            <NavItem className="categories-navitem">
+            <Nav.Link href="/" className="header-nav-link ">Home</Nav.Link>
+              <Nav.Link href="#" className="header-nav-link">News</Nav.Link>
+              <Nav.Link href="#" className="header-nav-link">Sports</Nav.Link>
+              <Nav.Link href="#" className="header-nav-link">Elections</Nav.Link>
+              <Nav.Link href="#" className="header-nav-link">Travel</Nav.Link>
+            </NavItem>
+           <NavItem className="header-btn">
               <Nav.Link href="#">
                 <button
                   className="btn btn-outline-light"
-                  style={{ color: "white", backgroundColor: "#1f0b78" }}
+                  style={{ color: "white", backgroundColor: "#1f0b78", height:50, borderRadius:15}}
                   onClick={handleSignUp}
                 >
                   Register
@@ -53,12 +61,11 @@ const Header = () => {
               </Nav.Link>
               {/* <button className="btn btn-outline-light" style={{color:"white", backgroundColor:"#1f0b78"}}>Sign In</button>
               <button className="btn btn-outline-light" style={{color:"white", backgroundColor:"#1f0b78"}}>Sign In</button> */}
-            </NavItem>
-            <NavItem>
+            
               <Nav.Link href="#">
                 <button
                   className="btn btn-outline-light"
-                  style={{ color: "white", backgroundColor: "#1f0b78" }}
+                  style={{ color: "white", backgroundColor: "#1f0b78", height:50, borderRadius:15  }}
                   onClick={handleSignIn}
                 >
                   Sign In
@@ -66,6 +73,7 @@ const Header = () => {
               </Nav.Link>
             </NavItem>
           </Nav>
+          
         </Navbar.Collapse>
       </Container>
     </Navbar>
