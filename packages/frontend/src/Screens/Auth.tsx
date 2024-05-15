@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom"
 import "./AuthorDashboard"
 import "../App.css"
 import { AuthContext } from "./AuthContext"
-import {UserData} from "./UserData.json"
+import { UserData } from "./UserData.json"
 
 const Auth = () => {
-  const user = useContext(AuthContext);
-  const { login }=useContext(AuthContext);
+  const user = useContext(AuthContext)
+  const { login } = useContext(AuthContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState({ username: "", password: "" })
@@ -45,23 +45,19 @@ const Auth = () => {
     }
   }
 
-  const CheckCred=()=>{
-      UserData.forEach((ele)=>{
-        if(ele.userName === username){
-          login(ele)
-        }
-      })
-      
-      // login(username);
-      
-     const data= JSON.stringify(user)
-     console.log(data +" heloo from user data ")
-    
-    
+  const CheckCred = () => {
+    UserData.forEach((ele) => {
+      if (ele.userName === username) {
+        login(ele)
+      }
+    })
 
-    
+    // login(username);
+
+    const data = JSON.stringify(user)
+    console.log(data + " heloo from user data ")
   }
-  
+
   const handleSubmit = (e) => {
     e.preventDefault()
     validateUsername(username)
@@ -104,7 +100,7 @@ const Auth = () => {
                 <div className="text-danger">{errors.password}</div>
               )}
             </div>
-            <div >
+            <div>
               <button type="submit" className="button-11">
                 Submit
               </button>

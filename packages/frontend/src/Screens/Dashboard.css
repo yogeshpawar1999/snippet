@@ -1,6 +1,6 @@
 .web-components {
-  width: 800px;
-  padding: 40px;
+  /* width: 400px; */
+  /* padding: 40px; */
   & .wrapper {
     position: relative;
     & > img {

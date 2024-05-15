@@ -3,7 +3,10 @@ import { ConfigService } from '@nestjs/config';
 import { PrismaClient } from '@prisma/client';
 
 @Injectable()
-export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+export class PrismaService
+  extends PrismaClient
+  implements OnModuleInit, OnModuleDestroy
+{
   constructor(private configService: ConfigService) {
     /**
      * Get the database url from environmental variables and pass it in.
@@ -11,9 +14,9 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     super({
       datasources: {
         db: {
-          url: 'postgresql://postgres:postgres@127.0.0.1:5432/content_sure_db?schema=content-sure'
-        }
-      }
+          url: 'postgresql://postgres:postgres@192.168.1.2:5432/hackathon?schema=public',
+        },
+      },
     });
   }
 
