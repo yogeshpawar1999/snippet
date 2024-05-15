@@ -99,7 +99,7 @@ const MidComp = ({ sampleImage }) => {
   return (
     <>
       <Col>
-        <Card className="customcard">
+        <Card>
           {provenance?.manifestStore ? (
             <WebComponents
               imageUrl={sampleImage}
@@ -130,7 +130,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getContentAPI = async () => {
-      fetch("http://192.168.1.27:5001/content", {
+      fetch("http://192.168.1.2:5001/content", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -172,7 +172,7 @@ const Dashboard = () => {
           <Col xs={12} lg={12}>
             <div className="d-flex flex-wrap justify-content-between">
               <div className="mb-2">
-                <h2 className="title-text">
+                <h2>
                   {user?.userData?.role === ROLES.AUTHOR && "My Posts"}
                   {user?.userData?.role === ROLES.EDITOR && "New Requests"}
                   {!user?.userData?.role && "Latest News"}

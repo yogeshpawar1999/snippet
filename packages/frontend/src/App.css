@@ -43,7 +43,6 @@
   font-size: 24px;
   color: rgb(12, 1, 1);
   font-weight: 800;
-  margin: 2rem;
 }
 
 label {
@@ -119,7 +118,7 @@ button {
 
 /* Button Styles */
 .button-11 {
-  margin-top: 30px;
+  margin-top: 15px;
   height: 35px;
   justify-content: center;
   align-items: center;

@@ -80,7 +80,7 @@ const EditorAuth = () => {
                 <div className="text-danger">{errors.password}</div>
               )}
             </div>
-            <div className="button-container">
+            <div className="d-grid gap-2 mt-3">
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>

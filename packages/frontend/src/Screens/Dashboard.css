@@ -1,6 +1,6 @@
 .web-components {
-  /* width: 400px;
-  padding: 40px; */
+  /* width: 400px; */
+  /* padding: 40px; */
   & .wrapper {
     position: relative;
     & > img {
@@ -36,15 +36,4 @@
   &::part(manifest-summary-view-more):hover:active {
     background-color: #095aba;
   }
-}
-
-.customcard {
-padding: 0px;
-margin: 0px;
-align-items: normal;
-}
-
-.title-text {
-font-size: 40px;
-font-weight: bold;
 }

@@ -157,7 +157,7 @@ const CreateContent = () => {
               <button
                 type="submit"
                 className="btn btn-primary"
-                style={{ marginTop: 40 }}
+                style={{ marginTop: 30 }}
               >
                 Submit
               </button>
