@@ -9,7 +9,7 @@ import { useContext, useEffect, useState } from "react"
 const Card = ({ title, content }) => {
   console.log()
   return (
-    <div className="card">
+    <div className="">
       <img src={authorImg} alt=""></img>
     </div>
   )
