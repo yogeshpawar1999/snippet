@@ -23,7 +23,7 @@ import "c2pa-wc/dist/components/PanelSection"
 import "c2pa-wc/dist/components/Popover"
 import "./Dashboard.css"
 import { AUTHORS, NewsStatus, ROLES } from "../common/constants"
-
+import { Buffer } from 'buffer';
 interface WebComponentsProps {
   imageUrl: string
   provenance: C2paReadResult
@@ -93,9 +93,99 @@ function WebComponents({
   )
 }
 
-const MidComp = ({ sampleImage }) => {
+const MidComp = ({ sampleImage, attributes }) => {
   const provenance = useC2pa(sampleImage)
   const viewMoreUrl = generateVerifyUrl(sampleImage)
+
+  const updateContent = async (newFile) => {
+    const formData = new FormData()
+    // formData.append("id", attributes.id)
+    formData.append("contentImage", newFile)
+    formData.append("status", NewsStatus.PUBLISHED)
+
+    console.log('newFile', newFile);
+
+    const response = await fetch(`http://192.168.1.27:5001/content/${attributes.id}`, {
+      method: "PATCH",
+      body: formData,
+    })
+
+    console.log('response:::::', response);
+
+  }
+
+  const signedImgae = async (sampleImage) => {
+    const toDataURL = (sampleImage) =>
+      fetch(sampleImage)
+        .then((response) => response.blob())
+        .then(
+          (blob) =>
+            new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onloadend = () => resolve(reader.result);
+              reader.onerror = reject;
+              reader.readAsDataURL(blob);
+            })
+        );
+
+    toDataURL(sampleImage).then(async (dataUrl) => {
+      console.log("RESULT:", dataUrl);
+      try {
+        const requestBody = {
+          file: dataUrl,
+          title: attributes?.title,
+          authorName: attributes?.authorName,
+          authorSocial: attributes?.socialLink,
+          publishedBy: "SNIPPET NEWS",
+          editor: '',
+          authorEmail: attributes?.authorEmail
+        };
+        const headers = {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        };
+        const response = await fetch("http://192.168.1.128:3000/content/sign", {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(requestBody),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to upload data");
+        }
+        console.log('dataRawURL json1', response);
+
+        const dataRawURL = await response.json()
+        console.log('dataRawURL json', dataRawURL);
+        const convertBase64ToFile = function (image) {
+          const byteString = atob(image.split(',')[1]);
+          const ab = new ArrayBuffer(byteString.length);
+          const ia = new Uint8Array(ab);
+          for (let i = 0; i < byteString.length; i += 1) {
+            ia[i] = byteString.charCodeAt(i);
+          }
+          const newBlob = new Blob([ab], {
+            type: 'image/jpeg',
+          });
+          return newBlob;
+        };
+
+        // const yourFile = await dataURLtoFile(dataRawURL, "yourImageName")
+        // const i = dataRawURL.base64.indexOf('base64,');
+        // const buffer = Buffer.from(dataRawURL.base64.slice(i + 7), 'base64');
+        const img = convertBase64ToFile(dataRawURL.base64)
+        const newFile = new File([img], "filename.png", { type: "image/png" })
+
+
+        updateContent(newFile)
+        console.log('yourFile', newFile);
+
+
+        // console.log("Response:", await response.json());
+      } catch (error) {
+        console.error("Error saving image:", error);
+      }
+    });
+  };
 
   return (
     <>
@@ -119,7 +209,7 @@ const MidComp = ({ sampleImage }) => {
 
           <div className="d-flex justify-content-around">
             <Button variant="danger" className='m-2 disabled'>Reject</Button>
-            <Button variant="primary" className='m-2 '>Approve</Button>
+            <Button variant="primary" className='m-2' onClick={() => signedImgae(sampleImage)}>Approve</Button>
           </div>
 
           {/* {userData?.role === ROLES.EDITOR &&
@@ -155,17 +245,17 @@ const Dashboard = () => {
             case ROLES.AUTHOR:
               mappedData = data.data
                 .filter((ele) => ele.authorName === user?.userData?.name)
-                .map((curEle) => curEle.contentImage)
+                .map((curEle) => ({ contentImage: curEle.contentImage, attributes: curEle }))
               break
             case ROLES.EDITOR:
               mappedData = data.data
                 .filter((ele) => ele?.status === NewsStatus.IN_REVIEW)
-                .map((curEle) => curEle.contentImage)
+                .map((curEle) => ({ contentImage: curEle.contentImage, attributes: curEle }))
               break
             default:
               mappedData = data.data
                 // .filter((ele) => ele?.status === NewsStatus.PUBLISHED)
-                .map((curEle) => curEle.contentImage)
+                .map((curEle) => ({ contentImage: curEle.contentImage, attributes: curEle }))
               break
           }
           setNewsList(() => mappedData)
@@ -194,7 +284,7 @@ const Dashboard = () => {
             {/* News section */}
             <Row xs={4} md={3} lg={4} className="g-4">
               {newsList?.length &&
-                newsList?.map((item) => <MidComp sampleImage={item} />)}
+                newsList?.map((item) => <MidComp sampleImage={item.contentImage} attributes={item.attributes} />)}
             </Row>
           </Col>
           {/* Rest of your layout code remains the same */}
