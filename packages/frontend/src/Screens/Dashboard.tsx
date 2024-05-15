@@ -1,4 +1,4 @@
-import { Container, Row, Col, Navbar, Nav, Image, Card } from "react-bootstrap"
+import { Container, Row, Col, Navbar, Nav, Image, Card, Button } from "react-bootstrap"
 import Footer from "./layout/Footer"
 import { useC2pa, useThumbnailUrl } from "@contentauth/react"
 import { useState, useEffect, useRef, useContext } from "react"
@@ -41,7 +41,7 @@ function WebComponents({
   const summaryRef = useRef<ManifestSummary>()
 
   useEffect(() => {
-    let disposeFn = () => {}
+    let disposeFn = () => { }
 
     if (!provenance.manifestStore?.activeManifest) {
       return
@@ -73,7 +73,8 @@ function WebComponents({
           alt="Snippet News Logo"
           width="100%"
           height="100%"
-          className="me-3"
+          className="card-image-te"
+          style={{ megingLeft: '10px' }}
         />
         {manifestStore ? (
           <div>
@@ -115,6 +116,16 @@ const MidComp = ({ sampleImage }) => {
               className="me-3"
             />
           )}
+
+          <div className="d-flex justify-content-around">
+            <Button variant="danger" className='m-2 disabled'>Reject</Button>
+            <Button variant="primary" className='m-2 '>Approve</Button>
+          </div>
+
+          {/* {userData?.role === ROLES.EDITOR &&
+          <div>
+            <button>Approve</button>
+          </div> } */}
         </Card>
       </Col>
     </>
