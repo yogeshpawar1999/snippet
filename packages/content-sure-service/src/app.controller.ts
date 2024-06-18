@@ -88,12 +88,34 @@ export class AppController {
   }
 
   @Patch(':id')
+  @UseInterceptors(
+    FileInterceptor('contentImage', {
+      storage: diskStorage({
+        destination: './uploads', // Change this to your desired storage location
+        filename: (req, file, cb) => {
+          const randomName = Array(32)
+            .fill(null)
+            .map(() => Math.round(Math.random() * 16).toString(16))
+            .join('');
+          cb(null, `${randomName}${extname(file.originalname)}`);
+        },
+      }),
+    }),
+  )
   async updatePost(
+    @UploadedFile() contentImage: Express.Multer.File,
     @Param('id') id: string,
     @Body() createContentDto: CreateContentDto,
     @Res() res,
   ): Promise<News> {
     try {
+      console.log('createContentDto', createContentDto);
+
+      const imageUrl = `/uploads/${contentImage.filename}`;
+      console.log('imageUrl', imageUrl);
+
+      createContentDto.contentImage = contentImage.path;
+
       const data = await this.appService.updateContent(
         Number(id),
         createContentDto,

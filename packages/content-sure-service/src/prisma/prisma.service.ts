@@ -14,7 +14,7 @@ export class PrismaService
     super({
       datasources: {
         db: {
-          url: 'postgresql://postgres:postgres@192.168.1.2:5432/hackathon?schema=public',
+          url: 'postgresql://postgres:postgres@localhost:5432/hackathon?schema=public',
         },
       },
     });

@@ -24,6 +24,9 @@ import "c2pa-wc/dist/components/Popover"
 import "./Dashboard.css"
 import { AUTHORS, NewsStatus, ROLES } from "../common/constants"
 import { Buffer } from 'buffer';
+import { useNavigate } from "react-router-dom"
+
+
 interface WebComponentsProps {
   imageUrl: string
   provenance: C2paReadResult
@@ -96,6 +99,7 @@ function WebComponents({
 const MidComp = ({ sampleImage, attributes, userInfo }) => {
   const provenance = useC2pa(sampleImage)
   const viewMoreUrl = generateVerifyUrl(sampleImage)
+  const navigate = useNavigate()
 
   const updateContent = async (newFile) => {
     const formData = new FormData()
@@ -105,11 +109,11 @@ const MidComp = ({ sampleImage, attributes, userInfo }) => {
 
     console.log('newFile', newFile);
 
-    const response = await fetch(`http://192.168.1.27:5001/content/${attributes.id}`, {
+    const response = await fetch(`http://localhost:5001/content/${attributes.id}`, {
       method: "PATCH",
       body: formData,
     })
-
+    navigate("/")
     console.log('response:::::', response);
 
   }
@@ -144,7 +148,7 @@ const MidComp = ({ sampleImage, attributes, userInfo }) => {
           "Content-Type": "application/json",
           Accept: "application/json",
         };
-        const response = await fetch("http://192.168.1.128:3000/content/sign", {
+        const response = await fetch("http://localhost:3000/content/sign", {
           method: "POST",
           headers: headers,
           body: JSON.stringify(requestBody),
@@ -206,6 +210,7 @@ const MidComp = ({ sampleImage, attributes, userInfo }) => {
               className="me-3"
             />
           )}
+          {console.log('This:::::userInfo?.role === ROLES.EDITOR',userInfo?.role , ROLES.EDITOR)}
           {userInfo?.role === ROLES.EDITOR &&
             <div className="d-flex justify-content-around">
               <Button variant="danger" className='m-2 disabled'>Reject</Button>
@@ -232,7 +237,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getContentAPI = async () => {
-      fetch("http://192.168.1.27:5001/content", {
+      fetch("http://localhost:5001/content", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -255,7 +260,7 @@ const Dashboard = () => {
               break
             default:
               mappedData = data.data
-                // .filter((ele) => ele?.status === NewsStatus.PUBLISHED)
+                .filter((ele) => ele?.status === NewsStatus.PUBLISHED)
                 .map((curEle) => ({ contentImage: curEle.contentImage, attributes: curEle }))
               break
           }

@@ -49,41 +49,48 @@ const Header = () => {
             />
           </Nav>
           <Nav>
-            <NavItem>
-              <Nav.Link href="#">
-                <button
-                  className="btn btn-outline-light"
-                  style={{ color: "white", backgroundColor: "#1f0b78" }}
-                  onClick={handleSignUp}
-                >
-                  Register
-                </button>
-              </Nav.Link>
-              {/* <button className="btn btn-outline-light" style={{color:"white", backgroundColor:"#1f0b78"}}>Sign In</button>
+            {!user?.userData && (
+              <>
+                <NavItem>
+                  <Nav.Link href="#">
+                    <button
+                      className="btn btn-outline-light"
+                      style={{ color: "white", backgroundColor: "#1f0b78" }}
+                      onClick={handleSignUp}
+                    >
+                      Register
+                    </button>
+                  </Nav.Link>
+                  {/* <button className="btn btn-outline-light" style={{color:"white", backgroundColor:"#1f0b78"}}>Sign In</button>
               <button className="btn btn-outline-light" style={{color:"white", backgroundColor:"#1f0b78"}}>Sign In</button> */}
-            </NavItem>
-            <NavItem>
-              <Nav.Link href="#">
-                <button
-                  className="btn btn-outline-light"
-                  style={{ color: "white", backgroundColor: "#1f0b78" }}
-                  onClick={handleSignIn}
-                >
-                  Sign In
-                </button>
-              </Nav.Link>
-            </NavItem>
-            <NavItem>
-              <Nav.Link href="#">
-                <button
-                  className="btn btn-outline-light"
-                  style={{ color: "white", backgroundColor: "#1f0b78" }}
-                  onClick={handleUploadContent}
-                >
-                  Create Content
-                </button>
-              </Nav.Link>
-            </NavItem>
+                </NavItem>
+                <NavItem>
+                  <Nav.Link href="#">
+                    <button
+                      className="btn btn-outline-light"
+                      style={{ color: "white", backgroundColor: "#1f0b78" }}
+                      onClick={handleSignIn}
+                    >
+                      Sign In
+                    </button>
+                  </Nav.Link>
+                </NavItem>
+              </>
+            )}
+
+            {user?.userData?.role === "AUTHOR" && (
+              <NavItem>
+                <Nav.Link href="#">
+                  <button
+                    className="btn btn-outline-light"
+                    style={{ color: "white", backgroundColor: "#1f0b78" }}
+                    onClick={handleUploadContent}
+                  >
+                    Create Content
+                  </button>
+                </Nav.Link>
+              </NavItem>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -45,13 +45,13 @@ const CreateContent = () => {
       formData.append("title", title)
       formData.append("description", description)
       formData.append("contentImage", newFile)
-      formData.append("authorName", "Poonam")
-      formData.append("authorEmail", "poonam.ghewande@ayanworks.com")
+      formData.append("authorName", "Sai")
+      formData.append("authorEmail", "sairanjit.tummalapalli@ayanworks.com")
       formData.append("status", NewsStatus.IN_REVIEW)
       formData.append("fullNews", "")
-      formData.append("socialLink", "")
+      formData.append("socialLink", "https://twitter.com/sairanjit_")
 
-      const response = await fetch("http://192.168.1.27:5001/content", {
+      const response = await fetch("http://localhost:5001/content", {
         method: "POST",
         body: formData,
       })
@@ -104,7 +104,7 @@ const CreateContent = () => {
         "Content-Type": "application/json",
         Accept: "application/json",
       }
-      const response = await fetch("http://192.168.1.15:3000/content/sign", {
+      const response = await fetch("http://localhost:3000/content/sign", {
         method: "POST",
         headers: headers,
         body: JSON.stringify(requestBody),

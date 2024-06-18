@@ -110,7 +110,7 @@ const Auth = () => {
                 <div className="text-danger">{errors.password}</div>
               )}
             </div>
-            <div className="form-group mt-3">
+            {/* <div className="form-group mt-3">
               <label>
                 <input
                   type="checkbox"
@@ -119,7 +119,7 @@ const Auth = () => {
                 />
                 Author
               </label>
-            </div>
+            </div> */}
             <div>
               <button type="submit" className="button-11">
                 Submit
